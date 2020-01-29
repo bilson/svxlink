@@ -140,41 +140,44 @@ proc manual_identification {} {
 proc send_short_ident {{hour -1} {minute -1}} {
   global mycall;
   variable CFG_TYPE;
-  variable short_announce_file
-  variable short_announce_enable
-  variable short_voice_id_enable
-  variable short_cw_id_enable
+#  variable short_announce_file
+#  variable short_announce_enable
+#  variable short_voice_id_enable
+#  variable short_cw_id_enable
 
   # Play voice id if enabled
-  if {$short_voice_id_enable} {
-    puts "Playing short voice ID"
-    spellWord $mycall;
-    if {$CFG_TYPE == "Repeater"} {
-      playMsg "Core" "repeater";
-    }
-    playSilence 500;
-  }
+#  if {$short_voice_id_enable} {
+#    puts "Playing short voice ID"
+#    spellWord $mycall;
+#    if {$CFG_TYPE == "Repeater"} {
+#      playMsg "Core" "repeater";
+#    }
+#    playSilence 500;
+#  }
 
   # Play announcement file if enabled
-  if {$short_announce_enable} {
-    puts "Playing short announce"
-    if [file exist "$short_announce_file"] {
-      playFile "$short_announce_file"
-      playSilence 500
-    }
-  }
+#  if {$short_announce_enable} {
+#    puts "Playing short announce"
+#    if [file exist "$short_announce_file"] {
+#      playFile "$short_announce_file"
+#      playSilence 500
+#    }
+#  }
 
   # Play CW id if enabled
-  if {$short_cw_id_enable} {
-    puts "Playing short CW ID"
-    if {$CFG_TYPE == "Repeater"} {
-      set call "$mycall/R"
-      CW::play $call
-    } else {
-      CW::play $mycall
-    }
-    playSilence 500;
-  }
+#  if {$short_cw_id_enable} {
+#    puts "Playing short CW ID"
+#    if {$CFG_TYPE == "Repeater"} {
+#      set call "$mycall/R"
+#      CW::play $call
+#    } else {
+#      CW::play $mycall
+#    }
+#    playSilence 500;
+#  }
+
+  CW::play $mycall;
+  playSilence 500;
 }
 
 
@@ -248,16 +251,16 @@ proc send_long_ident {hour minute} {
 # expired.
 #
 proc send_rgr_sound {} {
-  variable sql_rx_id
+#  variable sql_rx_id
 
-  if {$sql_rx_id != "?"} {
-    # 150 CPM, 1000 Hz, -4 dBFS
-    CW::play $sql_rx_id 150 1000 -4
-    set sql_rx_id "?"
-  } else {
-    playTone 440 500 100
-  }
-  playSilence 100
+#  if {$sql_rx_id != "?"} {
+#    # 150 CPM, 1000 Hz, -4 dBFS
+#    CW::play $sql_rx_id 150 1000 -4
+#    set sql_rx_id "?"
+#  } else {
+#    playTone 440 500 100
+#  }
+#  playSilence 100
 }
 
 

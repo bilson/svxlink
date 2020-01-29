@@ -177,7 +177,9 @@ class Logic : public LogicBase
     void recordStop(void);
     void injectDtmf(const std::string& digits, int len);
 
-    virtual bool activateModule(Module *module);
+    void qsoRecEnable(bool enable);
+    bool isQsoRecEnabled(void);
+        virtual bool activateModule(Module *module);
     virtual void deactivateModule(Module *module);
     Module *activeModule(void) const { return active_module; }
     Module *findModule(int id);
